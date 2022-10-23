@@ -1,3 +1,6 @@
+import sys
+
+
 class KNearestNeighbor:
     """
     a kNN classifier with L2 distance
@@ -42,6 +45,20 @@ class KNearestNeighbor:
         return dists
 
     def predict(self, X, k=1, num_loops=0):
+        """
+        Predict labels for test data using this classifier.
+
+        Inputs:
+        - X: A numpy array of shape (num_test, D) containing test data consisting
+             of num_test samples each of dimension D.
+        - k: The number of nearest neighbors that vote for the predicted labels.
+        - num_loops: Determines which implementation to use to compute distances
+          between training points and testing points.
+
+        Returns:
+        - y: A numpy array of shape (num_test,) containing predicted labels for the
+          test data, where y[i] is the predicted label for the test point X[i].
+        """
         if num_loops == 0:
             dists = self.compute_distances_no_loops(X)
         elif num_loops == 1:
