@@ -28,6 +28,12 @@ class KNearestNeighbor:
 	return dists
 
     def compute_distances_no_loops(self, X):
+        """
+        Compute the distance between each test point in X and each training point
+        in self.X_train using no explicit loops.
+
+        Input / Output: Same as compute_distances_two_loops
+        """
         num_test = X.shape[0]
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
