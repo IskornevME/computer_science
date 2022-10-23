@@ -40,3 +40,14 @@ class KNearestNeighbor:
         dists = np.sqrt(np.sum(X ** 2, axis = 1)[:, np.newaxis] -\
         2*X.dot(self.X_train.T) + np.sum(self.X_train ** 2, axis = 1))
         return dists
+
+    def predict(self, X, k=1, num_loops=0):
+        if num_loops == 0:
+            dists = self.compute_distances_no_loops(X)
+        elif num_loops == 1:
+            dists = self.compute_distances_one_loop(X)
+        elif num_loops == 2:
+            dists = self.compute_distances_two_loops(X)
+        else:
+            raise ValueError('Invalid value %d for num_loops' % num_loops)
+        return self.predict_labels(dists, k=k)
