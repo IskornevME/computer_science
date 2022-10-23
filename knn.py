@@ -25,4 +25,5 @@ class KNearestNeighbor:
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
             dists[i] = np.sqrt((np.sum((X[i] - self.X_train)**2, axis = 1)))
+	return dists
 
