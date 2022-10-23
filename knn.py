@@ -18,3 +18,11 @@ class KNearestNeighbor:
             for j in range(num_train):
                 dists[i][j] = np.sqrt(sum((X[i] - self.X_train[j]) ** 2))
         return dists
+
+    def compute_distances_one_loop(self, X):
+        num_test = X.shape[0]
+        num_train = self.X_train.shape[0]
+        dists = np.zeros((num_test, num_train))
+        for i in range(num_test):
+            dists[i] = np.sqrt((np.sum((X[i] - self.X_train)**2, axis = 1)))
+
